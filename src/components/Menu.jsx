@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-
+import { Button } from '@mui/material';
+import Menu_create from './Menu_create';
 class Menu extends Component{
     constructor(props){
         super(props)
-        this.state = {menu:[], error:"", foodList:[]}
+        this.state = {menu:[], error:"", foodList:[], createMenu:false}
     }
 
     componentDidMount(){
@@ -43,13 +44,21 @@ if(matched){
     console.log(this.state.foodList)
 }
 
-
+menuPopup = ()=>{
+  
+  this.setState({createMenu:true})
+}
     render(){
-        const {menu, error, foodList} = this.state;
+        const {menu, error, foodList, createMenu} = this.state;
         return(
 
   <>
-  <h1>Getting menu items</h1>
+    <Button  onClick={this.menuPopup}
+      variant='contained' 
+      sx={{ marginTop: '10px', fontSize:"1rem" }}
+    >
+      Create menu
+    </Button>
   <div style={{ 
    
   width: "100%", 
@@ -57,7 +66,7 @@ if(matched){
   display: "grid", 
   gridTemplateColumns: "repeat(3, 1fr)", 
   gap: "10px",
-  justifyContent: "center"
+  // justifyContent: "center"
 }}>
   {menu && menu.map((item, index) => {
     return (
@@ -88,7 +97,7 @@ if(matched){
   })}
 </div>
 
-<div style={{display:'flex', alignItems:"center", justifyContent:"center", gap:"20px", marginTop:"30px"}}>
+<div style={{display:'grid', gridTemplateColumns:"repeat(3,1fr)", placeItems:"center", justifyContent:"center", gap:"20px", marginTop:"30px"}}>
     {
         foodList && foodList.map((item,index)=>{
            return  <div style={{
@@ -97,7 +106,7 @@ if(matched){
             padding:"10px",
           width: "200px",
           height: "200px", 
-          backgroundColor: "orange", 
+          backgroundColor: "red", 
           border: "2px solid black",
           borderRadius: "10px",
           display: "flex", 
@@ -108,14 +117,15 @@ if(matched){
           cursor: "pointer"
         }}>
             <p>{item.food_name}</p>
-            <p>{item.quantity_half}</p>
-            <p>{item.quantity_full}</p>
+            <p>Half Plate :{item.quantity_half}</p>
+            <p>Full Plate :{item.quantity_full}</p>
             </div>
         })
 
     }
 </div>
 
+  {createMenu ? <Menu_create/>: null}
  
   </>
         )
