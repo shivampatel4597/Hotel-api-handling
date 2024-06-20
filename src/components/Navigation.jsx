@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import {Box, AppBar, Toolbar, IconButton, Typography , Button} from '@mui/material';
-import { Search } from '@mui/icons-material';
+import { Fullscreen, Search } from '@mui/icons-material';
  class Navigation extends Component {
 
 
@@ -11,7 +11,7 @@ import { Search } from '@mui/icons-material';
 <Box sx={{flexGrow:1}}>
   <AppBar position='static'>
     
-    <Toolbar sx={{backgroundColor:"primary.light",display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+    <Toolbar sx={{ backgroundColor:"primary.light",display:"flex", alignItems:"center", justifyContent:"space-between"}}>
      <IconButton  size="large"
             edge="start"
             color="inherit"

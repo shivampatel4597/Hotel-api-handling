@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
 import { Box, FormControl, TextField, InputLabel, Button, IconButton } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
-export default class MenuCreate extends Component {
+export default class Update_food extends Component {
   constructor(props){
     super(props)
-    this.state = {input:""}
+    this.state = {Name:"", half:"", full:""}
   }
 
   submit = ()=>{
 
-this.creating().then((data)=>{
+this.updating().then((data)=>{
   console.log("data posted succesfully")
 }).catch((error)=>{
   console.log(error)
 })
-    this.props.closePopup()
+    this.props.closeFoodPopup()
    
   }
 
-  creating  = ()=>{
+  updating  = ()=>{
      console.log(this.state.input);
-    return fetch("https://renderhm.onrender.com/menus",{
-      method: "POST",
+    return fetch(`https://renderhm.onrender.com/food_items/${this.props.foodItem}`,{
+      method: "PUT",
       headers: {"Content-Type": "application/json"},
       body:JSON.stringify({
-        
-          "id": null,
-          "menu_type": this.state.input,
-          "food_items": []
+        "food_name": this.state.Name,
+        "quantity_half": this.state.half,
+        "quantity_full": this.state.full,
       
       
       })
@@ -67,7 +66,7 @@ this.creating().then((data)=>{
       >
         <FormControl sx={{ width: '100%' }}>
          
-          <TextField onChange={(e)=>this.setState({input:e.target.value})}
+          <TextField onChange={(e)=>this.setState({Name:e.target.value})}
             id="menu-name"
             variant="outlined"
             sx={{
@@ -78,7 +77,35 @@ this.creating().then((data)=>{
                 fontSize: '1rem',
               },
             }}
-            placeholder="Enter text"
+            placeholder="Enter food name"
+            fullWidth
+          />
+               <TextField onChange={(e)=>this.setState({half:e.target.value})}
+            id="menu-name"
+            variant="outlined"
+            sx={{
+              '& .MuiInputBase-root': {
+                backgroundColor: "#e1bee7",
+                height: '2.5rem',
+                padding: '0.5rem',
+                fontSize: '1rem',
+              },
+            }}
+            placeholder="half plate"
+            fullWidth
+          />
+               <TextField onChange={(e)=>this.setState({full:e.target.value})}
+            id="menu-name"
+            variant="outlined"
+            sx={{
+              '& .MuiInputBase-root': {
+                backgroundColor: "#e1bee7",
+                height: '2.5rem',
+                padding: '0.5rem',
+                fontSize: '1rem',
+              },
+            }}
+            placeholder="full plate"
             fullWidth
           />
         </FormControl>
