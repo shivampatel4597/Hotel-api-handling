@@ -2,11 +2,11 @@
 import './App.css';
 import { BrowserRouter,Routes, Route } from 'react-router-dom';
 import Hotel from './components/Hotel';
-import Menu from './components/Menu';
+import Menu from './components/Menu/Menu';
 import Food_items from './components/Food_items';
-import Get_api from './components/Get_api';
-
-import Postdata from './components/Postdata';
+// import Get_api from './components/Get_api';
+import Table_bookings from './components/Table/Table_bookings';
+// import Postdata from './components/Postdata';
 
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
    <Routes>
     <Route path="/menus"  element={<Menu/>} />
     <Route path="/foodItems"  element={<Food_items/>} />
+    <Route path="/tables"  element={<Table_bookings/>} />
 
    </Routes>
    </BrowserRouter>
